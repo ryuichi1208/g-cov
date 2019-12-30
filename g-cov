@@ -19,3 +19,35 @@ if (system_no_output(3, $gcov_tool, "--help") == -1)
 {
 	die("ERROR: need tool $gcov_tool!\n");
 }
+
+# Check for follow option
+if ($follow)
+{
+	$follow = "-follow"
+}
+else
+{
+	$follow = "";
+}
+
+# Determine checksum mode
+if (defined($checksum))
+{
+	# Normalize to boolean
+	$checksum = ($checksum ? 1 : 0);
+}
+else
+{
+	# Default is off
+	$checksum = 0;
+}
+
+# Determine max depth for recursion
+if ($no_recursion)
+{
+	$maxdepth = "-maxdepth 1";
+}
+else
+{
+	$maxdepth = "";
+}
