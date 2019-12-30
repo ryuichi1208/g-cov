@@ -1,0 +1,21 @@
+#!/usr/bin/env perl
+
+# Check for help option
+if ($help)
+{
+	print_usage(*STDOUT);
+	exit(0);
+}
+
+# Check for version option
+if ($version)
+{
+	print("$tool_name: $lcov_version\n");
+	exit(0);
+}
+
+# Check gcov tool
+if (system_no_output(3, $gcov_tool, "--help") == -1)
+{
+	die("ERROR: need tool $gcov_tool!\n");
+}
